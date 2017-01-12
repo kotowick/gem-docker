@@ -15,7 +15,7 @@ module Docker
       def template_dir_paths_map
         # from gem directory path => to app directory path
         {
-            'docker-compose' => "#{Rails.root}/config/docker/docker-compose",
+            'compose' => "#{Rails.root}/config/docker/docker-compose",
             'project' => "#{Rails.root}/config/docker/project",
             'database' => "#{Rails.root}/config/docker/database",
         }

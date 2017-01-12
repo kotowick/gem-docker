@@ -25,6 +25,9 @@ Or install it yourself as:
 
     $ gem install docker
 
+Now, install fswatch
+    $ brew install fswatch
+
 ## Usage
 
 ### Generate files
