@@ -27,14 +27,15 @@ services:
     links:
       # Link to the database serivce below. 'db' will be the
       # host name you need to enter in the database.yml file.
-      - db:TMP_APP_NAME-db
+      - db:TMP_APP_NAME-database
 
   # Database image settings
   db:
-    image: DOCKER_PREFIX/TMP_APP_NAME-db
-    container_name: TMP_APP_NAME-db
+    image: DOCKER_PREFIX/TMP_APP_NAME-database
+    container_name: TMP_APP_NAME-database
     environment:
       - MYSQL_ROOT_PASSWORD=development
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
     ports:
       - "3306:3306"
 
