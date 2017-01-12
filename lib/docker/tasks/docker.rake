@@ -12,7 +12,7 @@ namespace :docker do
       docker_compose_file,
       'docker-compose.yml',
       {
-        "TMP_APP_NAME": "#{ENV['APP_NAME']}",
+        "TMP_APP_NAME": app_name,
         "DOCKER_PREFIX": docker_prefix
       }
     )
