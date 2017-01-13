@@ -11,7 +11,7 @@ This gem provides an easier approach to using docker-sync and docker-api to set 
 
 - [download brew](http://brew.sh/)
 - run: ```brew install fswatch```
-- ```sudo echo '127.0.0.1 db' >> /etc/hosts```
+- run: ```sudo echo '127.0.0.1 db' >> /etc/hosts```
 
 ## Installation
 
