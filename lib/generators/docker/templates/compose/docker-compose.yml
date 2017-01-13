@@ -18,7 +18,7 @@ services:
       # The port which rails is exposed to
       - "3000:3000"
     volumes_from:
-      - container:fullexample-sync:rw # will be mounted on /var/www
+      - container:TMP_APP_NAME-sync:rw # will be mounted on /var/www
     depends_on:
       # This project depends on the service below called 'db'
       - db
@@ -40,5 +40,5 @@ services:
       - "3306:3306"
 
 volumes:
-  fullexample-sync:
+  TMP_APP_NAME-sync:
     external: true
