@@ -5,11 +5,16 @@ This gem provides an easier approach to using docker-sync and docker-api to set 
 - significantly reduces the I/O performance when mounting OSX volumes to Docker
 - allows an easier/dynamic approach to building Docker images and running them with Docker Compose
 
-### Notes
-- At the time of this writing, docker-api is meant to interface with Docker version 1.3.*
-- This is only intended for OSX (at the moment)
+***[View more notes here.](https://github.com/kotowick/gem-docker/wiki/6.-Notes)***
+
+## Pre-reqs
+
+- [download brew](http://brew.sh/)
+- run: ```brew install fswatch```
 
 ## Installation
+
+**For Rails Project**
 
 Add this line to your application's Gemfile:
 
@@ -21,50 +26,52 @@ And then execute:
 
     $ bundle
 
-Or install it yourself as:
+**For Standalone Installation**
 
     $ gem install docker
+    
+***
 
-Now, install fswatch
+**Required Environment Variables**
 
-    $ brew install fswatch
+* **APP_NAME**: 'NAME_OF_YOUR_APPLICATION (i.e reports, management, store, etc)'
 
-To access your docker database from your local machine, add this to /etc/hosts:
-
-    $ sudo echo '127.0.0.1 db' >> /etc/hosts
+* **DOCKER_PREFIX**: 'PREFIX_FOR_DOCKER_IMAGES (example: company name)'
 
 ## Usage
 
 ### Generate files
+
     $ rails g docker:install
 
-**Files Generates:**
-- ./config/docker/database/Dockerfile
-- ./config/docker/project/Dockerfile
-- ./config/docker/compose/docker-compose.yml
-
-These files are examples, feel free to change them as needed. There are some "variables" in CAPS which the gem reads and changes based on your environment settings.
-
-### Environment settings
-Please have these variables set in your environment:
-
-- APP_NAME # the unique name of your application
-- DOCKER_PREFIX # prefix of the docker image
+***[Learn more about the generated files, and what you need to do.](https://github.com/kotowick/gem-docker/wiki/2.-Generated-Files)***
 
 ### Building Docker Images
-    $ rake docker:build
 
-For each Dockerfile in the ./config/docker/ path, it builds it into an image. It tags it with ```<DOCKER_PREFIX>/<APP_NAME>-<last_folder_name>```. I.E building ```./config/docker/project/Dockerfile``` would result in an image named ```<DOCKER_PREFIX>/<APP_NAME>-project```, where *APP_NAME* and *DOCKER_PREFIX* are environment variables set in your application.
+    $ rake docker:build
+    
+***[See instructions on how docker:build works with your project.](https://github.com/kotowick/gem-docker/wiki/3.-Building-Docker-Images)***
 
 ### Running everything
-    $ rake docker:up # builds the docker-compose file at ./config/docker/compose/docker-compose.yml
+
+    $ rake docker:up
+
+***[Learn more about how this works.](https://github.com/kotowick/gem-docker/wiki/4.-Run-it!)***
 
 ### Clean up
-    $ rake docker:clean # remove all related containers
+
+    $ rake docker:clean
+    
+This removes all containers for this application.
+
+### More Commands
+
+***[Check out other available commands.](https://github.com/kotowick/gem-docker/wiki/5.-More-Commands)***
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/kotowick/docker. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/kotowick/gem-docker. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+
 
 ## License
 
