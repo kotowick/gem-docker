@@ -26,7 +26,12 @@ Or install it yourself as:
     $ gem install docker
 
 Now, install fswatch
+
     $ brew install fswatch
+
+To access your docker database from your local machine, add this to /etc/hosts:
+
+    $ sudo echo '127.0.0.1 db' >> /etc/hosts
 
 ## Usage
 
@@ -38,22 +43,28 @@ Now, install fswatch
 - ./config/docker/project/Dockerfile
 - ./config/docker/compose/docker-compose.yml
 
+These files are examples, feel free to change them as needed. There are some "variables" in CAPS which the gem reads and changes based on your environment settings.
+
+### Environment settings
+Please have these variables set in your environment:
+
+- APP_NAME # the unique name of your application
+- DOCKER_PREFIX # prefix of the docker image
+
 ### Building Docker Images
     $ rake docker:build
-For each Dockerfile in the ./config/docker/ path, it builds it into an image. It tags it with ```<DOCKER_PREFIX>/<APP_NAME>-<last_folder_name>```. I.E building ```./config/docker/project/Dockerfile``` would result in an image named ```<DOCKER_PREFIX>/<APP_NAME>-project```, where *APP_NAME* and *DOCKER_PREFIX* are envrionment variables set in your application.
+
+For each Dockerfile in the ./config/docker/ path, it builds it into an image. It tags it with ```<DOCKER_PREFIX>/<APP_NAME>-<last_folder_name>```. I.E building ```./config/docker/project/Dockerfile``` would result in an image named ```<DOCKER_PREFIX>/<APP_NAME>-project```, where *APP_NAME* and *DOCKER_PREFIX* are environment variables set in your application.
 
 ### Running everything
-    $ rake docker:up
-This runs docker-compose with the input file located at ./config/docker/compose/docker-compose.yml. In that file, it specifies the containers to build.
+    $ rake docker:up # builds the docker-compose file at ./config/docker/compose/docker-compose.yml
 
 ### Clean up
-    $ rake docker:clean
-This removes all containers for this application.
+    $ rake docker:clean # remove all related containers
 
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/kotowick/docker. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
-
 
 ## License
 

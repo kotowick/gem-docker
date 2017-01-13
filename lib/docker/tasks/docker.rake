@@ -48,6 +48,14 @@ namespace :docker do
     run_docker
   end
 
+  desc 'Start Docker Console'
+  task :console, [:postfix] do |t, args|
+    raise "Postfix of container name was not found. #{app_name}-[:postfix]. Run rake docker:console['postfix_name'], where postfix is the end part of your container (most likely, it will be 'project')" if args[:postfix].blank?
+
+    container = Docker::Container.get("#{app_name}-#{args[:postfix]}")
+    container.exec(['rails c'])
+  end
+
   private
 
   def run_docker
